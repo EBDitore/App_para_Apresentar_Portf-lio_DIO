@@ -19,6 +19,7 @@ object DataModule {
     fun load() {
         loadKoinModules(networkModules() + repositoriesModule())
     }
+
     private fun networkModules(): Module {
         return module {
             single {
