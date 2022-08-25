@@ -2,6 +2,8 @@ package meu.teste.portfoliopresentation.data.di
 
 import android.util.Log
 import com.google.gson.GsonBuilder
+import meu.teste.portfoliopresentation.data.repositories.RepoRepository
+import meu.teste.portfoliopresentation.data.repositories.RepoRepositoryImpl
 import meu.teste.portfoliopresentation.data.services.GitHubService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,7 +17,7 @@ object DataModule {
     private const val OK_HTTP = "OkHttp"
 
     fun load() {
-        loadKoinModules(networkModules())
+        loadKoinModules(networkModules() + repositoriesModule())
     }
     private fun networkModules(): Module {
         return module {
@@ -36,6 +38,12 @@ object DataModule {
             single {
                 createService<GitHubService>(get(), get())
             }
+        }
+    }
+
+    private fun repositoriesModule(): Module {
+        return module {
+            single<RepoRepository> { RepoRepositoryImpl(get()) }
         }
     }
 

@@ -1,5 +1,6 @@
 package meu.teste.portfoliopresentation.data.services
 
+import meu.teste.portfoliopresentation.data.model.Repo
 import retrofit2.http.GET
 import retrofit2.http.Path
 
